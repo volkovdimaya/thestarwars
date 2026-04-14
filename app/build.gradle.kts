@@ -2,6 +2,13 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+
+    id("com.google.devtools.ksp")
+    kotlin("plugin.serialization") version "2.1.21"
+}
+
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
 }
 
 android {
@@ -28,11 +35,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -40,6 +47,19 @@ android {
 }
 
 dependencies {
+
+    implementation(libs.koin.androidx.compose)
+    implementation("io.insert-koin:koin-androidx-compose:3.4.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+    implementation(libs.room.runtime)
+    implementation(libs.koin.core)
+
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.converter.gson)
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
