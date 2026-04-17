@@ -1,10 +1,10 @@
 package com.dima.thestarwars.di
 
+import com.dima.thestarwars.domain.home.HomeInteractorImpl
+import com.dima.thestarwars.presentation.home.api.HomeInteractor
 import org.koin.dsl.module
 
 val interactorModule = module {
-    // Здесь вы можете зарегистрировать свои репозитории, источники данных и т.д.
-    // Например:
-    // single { UserRepository(get()) }
-    // single { ProductRepository(get()) }
+    single<HomeInteractor> { HomeInteractorImpl(get()) }
+
 }

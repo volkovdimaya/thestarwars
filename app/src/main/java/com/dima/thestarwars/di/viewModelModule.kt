@@ -1,10 +1,10 @@
 package com.dima.thestarwars.di
 
+import com.dima.thestarwars.presentation.home.HomeViewModel
+import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
 val viewModelModule = module {
-    // Здесь вы можете зарегистрировать свои репозитории, источники данных и т.д.
-    // Например:
-    // single { UserRepository(get()) }
-    // single { ProductRepository(get()) }
+    viewModel { HomeViewModel(get()) }
+
 }
